@@ -4,24 +4,21 @@
  * Aufgabe 1c, i)
  */
 bool returnTrue() {
-    // TODO
-    return false;
+    return true;
 }
 
 /**
  * Aufgabe 1c, ii)
  */
 int returnPositiveOdd() {
-    // TODO
-    return 0;
+    return 3;
 }
 
 /**
  * Aufgabe 1c, iii)
  */
 int returnPrime() {
-    // TODO
-    return 0;
+    return 11;
 }
 
 
@@ -30,25 +27,52 @@ int returnPrime() {
  * Aufgabe 2a)
  */
 void reverse(vector<int>& numbers) {
-    // TODO
+    for(int i = 0; i < (numbers.size()+1)/2;i++) {
+        char a = numbers[i];
+        numbers[i] = numbers[numbers.size()-i-1];
+        numbers[numbers.size()-i-1] = a;
+    }
 }
 
 /**
  * Aufgabe 2b)
  */
 vector<int> plusOne(vector<int>& digits) {
-    vector<int> sol;
-    // TODO
-    return sol;
+    if (digits[digits.size()-1] < 9) {
+        digits[digits.size()-1] = digits[digits.size()-1] + 1;
+        return digits;
+    }
+
+    int i = digits.size()-1;
+    for(i; i >= 0 && digits[i] == 9;i--){
+        digits[i] = 0;
+    }
+
+    if (digits[0] == 0){
+        digits.insert(digits.begin(), 1);
+    } else {
+        digits[i] = digits[i]+1;
+    }
+
+    return digits;
 }
 
 /**
  * Aufgabe 2c)
  */
 vector<int> findPeaks(vector<int>& mountain) {
-    vector<int> peaks{};
-    // TODO
-    return peaks;
+    if (mountain.size() < 3) return {};
+
+    std::vector<int> res = {};
+
+    for (int i = 1; i < mountain.size()-1;i++) {
+        if (mountain[i-1] < mountain[i] && mountain[i] > mountain[i+1]) {
+            res.push_back(i);
+            i++;
+        }
+    }
+
+    return res;
 }
 
 

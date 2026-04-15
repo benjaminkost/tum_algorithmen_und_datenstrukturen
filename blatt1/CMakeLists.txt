@@ -1,4 +1,14 @@
 cmake_minimum_required(VERSION 3.22)
+
+if(APPLE)
+    execute_process(
+        COMMAND xcrun --show-sdk-path
+        OUTPUT_VARIABLE MACOS_SDK_PATH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -isystem ${MACOS_SDK_PATH}/usr/include/c++/v1")
+endif()
+
 project(Programmieraufgaben)
 
 set(CMAKE_CXX_STANDARD 17)
