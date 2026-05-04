@@ -4,8 +4,22 @@
  * Aufgabe 2
  */
 int max_subarray(vector<int>& a) {
-    // TODO
-    return 0;
+    if (a.size() == 0) return 0;
+    int sum_res = a[0];
+    int sum_temp = a[0];
+
+    for(int i = 0; i < a.size(); i++){
+        if (i != 0) {
+            sum_temp += a[i];
+        }
+        if (a[i] > sum_temp) {
+            sum_temp = a[i];
+        }
+        if (sum_temp > sum_res){
+            sum_res = sum_temp;
+        }
+    }
+    return sum_res;
 }
 
 /**
