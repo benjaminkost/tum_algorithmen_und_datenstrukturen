@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xcode-select -p)",
+      "Bash(xcrun --show-sdk-path)",
+      "Bash(/usr/bin/c++ --version)",
+      "Bash(/usr/bin/c++ -std=gnu++20 -x c++ -)",
+      "Bash(/usr/bin/c++ -std=gnu++20 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -x c++ -)",
+      "Read(//Library/Developer/CommandLineTools/SDKs/**)",
+      "Read(//Library/Developer/CommandLineTools/usr/include/**)",
+      "Bash(/usr/bin/c++ -std=gnu++20 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk -x c++ -)",
+      "Bash(/usr/bin/c++ -std=gnu++20 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk -x c++ -)",
+      "Bash(/usr/bin/c++ -std=gnu++20 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk -x c++ -)",
+      "Bash(/usr/bin/c++ -std=gnu++20 -stdlib=libc++ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk -I/Library/Developer/CommandLineTools/SDKs/MacOSX26.2.sdk/usr/include/c++/v1 -x c++ -)",
+      "Bash(/usr/bin/c++ -v)",
+      "Bash(/usr/bin/c++ -std=gnu++20 -v -x c++ -)"
+    ]
+  }
+}
