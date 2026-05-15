@@ -21,12 +21,13 @@ vector<int> addNumbers(vector<int>& x, vector<int>& y, int base) {
 
     if (carry != 0)
     {
-        if (yCounter >= 0){
+        for (; yCounter >= 0 ; yCounter--)
+        {
             tempSum = y[yCounter] + carry;
             y[yCounter] = tempSum % base;
             carry = tempSum / base;
-            if (carry != 0) y.insert(y.begin(), carry);
-        } else
+        }
+        if (yCounter < 0 && carry != 0)
         {
             y.insert(y.begin(), carry);
         }
