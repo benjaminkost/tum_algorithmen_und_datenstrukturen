@@ -3,7 +3,7 @@
 #include "include/blatt4.h"
 
 void aufgabe1() {
-    vector<int> digits = {3,4,7,6,9};
+    vector<int> digits = {9};
 
     printf("Before increment: ");
     printDigits(digits, 10);
