@@ -2,8 +2,12 @@
 
 /// Aufgabe 1b)
 float pi(int n) {
-    // TODO
-    return 3;
+    if (n == 0) return 4;
+    if (n%2 == 0)
+    {
+        return 4.0f/(2*static_cast<float>(n)+1) + pi(n-1);
+    }
+    return -4.0f/(2*static_cast<float>(n)+1) + pi(n-1);
 }
 
 /// Aufgabe 3
@@ -14,8 +18,21 @@ long binom_iter(int n, int k) {
 }
 
 long binom_rec(int n, int k) {
-    // TODO
-    return 0;
+    long res=0;
+
+    if (n == 0) n=1;
+    if (k == 0) k=1;
+    for (int i = n;i>0;i--)
+    {
+        res += i/(k*(i-k));
+        if (i == k)
+        {
+            res += i/k;
+            break;
+        }
+        if (k != 0) --k;
+    }
+    return res;
 }
 
 /// Aufgabe 4
