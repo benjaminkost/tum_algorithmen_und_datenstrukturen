@@ -2,7 +2,6 @@
 
 #include "include/blatt5.h"
 
-
 void aufgabe1b() {
     int n = 10;
     float approx = pi(n);
@@ -39,8 +38,9 @@ void aufgabe4b() {
 
 
 int main() {
-    aufgabe1b();
-//    aufgabe3a();
+//    float res = aufgabe1a(3);
+//    aufgabe1b();
+    aufgabe3a();
 //    aufgabe3b();
 //    aufgabe4a();
 //    aufgabe4b();
