@@ -14,6 +14,8 @@ long binom_iter(int, int);
 
 long binom_rec(int, int);
 
+long binom_rec_alternativ(int, int);
+
 int g_tailrec(int x, int y);
 
 int g_iter(int x, int y);

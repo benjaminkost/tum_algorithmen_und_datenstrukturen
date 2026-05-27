@@ -37,31 +37,56 @@ float heron(float a, float aktuellerWert)
 
 /// Aufgabe 3
 
-long binom_iter(int n, int k) {
-    long res=1;
-    while (n > 0)
+long factorial(int n) {
+    if (n == 0) return 1;
+    int res = 1;
+    for (int i = 1; i<=n; i++)
     {
-        if (k<=1 && n-1<=1)
-        {
-            res*=n;
-        } else if (k<=1)
-        {
-            res*=n/(n-1);
-        } else if (n-1<=1)
-        {
-            res*=n/k;
-        } else
-        {
-            res*=n/(k*(n-k));
-        }
-        n--;
-        k--;
+        res*=i;
     }
     return res;
 }
 
+long binom_iter(int n, int k) {
+    long res = factorial(n)/(factorial(k)*factorial(n-k));
+
+    return res;
+}
+
+long binom_iter_alternativ(int n, int k) {
+    float res=1;
+    long diff = n-k;
+    while (n > 0)
+    {
+        if (k<=1 && diff<=1)
+        {
+            res*=1.0f*n;
+        } else if (k<=1)
+        {
+            res*=1.0f*n/diff;
+        } else if (diff<=1)
+        {
+            res*=1.0f*n/k;
+        } else
+        {
+            res*=1.0f*n/(k*diff);
+        }
+        n--;
+        k--;
+        diff--;
+    }
+    return (long) res;
+}
+
 long binom_rec(int n, int k) {
-    return 0;
+    if ( k == 0 || n == k) return 1;
+    return binom_rec(n-1,k-1)+binom_rec(n-1,k);
+}
+
+long binom_rec_alternativ(int n, int k)
+{
+    if (k == 0 || n == k) return 1;
+    return binom_rec_alternativ(n+1,k+1)-binom_rec_alternativ(n,k+1);
 }
 
 /// Aufgabe 4

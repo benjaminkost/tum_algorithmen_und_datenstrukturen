@@ -9,15 +9,15 @@ void aufgabe1b() {
 }
 
 void aufgabe3a() {
-    int n = 4;
-    int k = 2;
+    int n = 3;
+    int k = 1;
     long binom = binom_iter(n, k);
     printf("binom(%d, %d) = %ld\n", n, k, binom);
 }
 
 void aufgabe3b() {
-    int n = 4;
-    int k = 2;
+    int n = 1;
+    int k = 0;
     long binom = binom_rec(n, k);
     printf("binom(%d, %d) = %ld\n", n, k, binom);
 }
@@ -40,8 +40,8 @@ void aufgabe4b() {
 int main() {
 //    float res = aufgabe1a(3);
 //    aufgabe1b();
-    aufgabe3a();
-//    aufgabe3b();
+//    aufgabe3a();
+    aufgabe3b();
 //    aufgabe4a();
 //    aufgabe4b();
 }
