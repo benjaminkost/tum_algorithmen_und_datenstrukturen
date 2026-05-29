@@ -92,19 +92,26 @@ long binom_rec_alternativ(int n, int k)
 /// Aufgabe 4
 
 // Hilfsfunktion g endrekursiv
-int g_tailrec_help(int x, int y /* TODO: weitere Parameter */) {
-    // TODO
-    return 0;
+int g_tailrec_help(int x, int y, int akk) {
+    if (x<10) return pow(x,y) + akk;
+    int temp = pow(x%10,y);
+    return g_tailrec_help(x/10,y+1,akk + temp);
 }
 
 // Funktion g endrekursiv
 int g_tailrec(int x, int y) {
-    // TODO
-    return 0;
+    return g_tailrec_help(x,y,0);
 }
 
 // Funktion g iterativ
 int g_iter(int x, int y) {
-    // TODO
-    return 0;
+    int akk = 0;
+    for (int i = 0; x>=10; i++)
+    {
+        akk+=pow(x%10,y);
+        y+=1;
+        x=x/10;
+    }
+    akk += pow(x,y);
+    return akk;
 }
