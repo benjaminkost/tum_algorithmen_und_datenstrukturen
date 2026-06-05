@@ -1,4 +1,5 @@
 #include "../include/blatt6.h"
+#include <limits>
 
 /// Aufgabe 2
 
@@ -25,8 +26,33 @@ long long binom_memo(int n, int k) {
 }
 
 /// Aufgabe 3
+void selection_sort_iter(vector<int>& vec) {
+    int min_index = -1;
+    int min_value = std::numeric_limits<int>::max();
+    int i = 0;
+
+    while (i < vec.size())
+    {
+        int j = i;
+        while (j < vec.size())
+        {
+            if (min_value > vec[j])
+            {
+                min_value = vec[j];
+                min_index = j;
+            }
+            j++;
+        }
+        vec[min_index] = vec[i];
+        vec[i] = min_value;
+        min_value = std::numeric_limits<int>::max();
+        min_index = -1;
+        i++;
+    }
+}
+
 void selection_sort(vector<int>& vec) {
-    // TODO
+
 }
 
 /// Aufgabe 4a)
@@ -48,3 +74,5 @@ int get_shift(vector<int>& vec) {
  *  -> Gibt die Liste aus
  *
  */
+
+

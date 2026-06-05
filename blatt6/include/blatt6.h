@@ -15,6 +15,8 @@ long long binom_memo(int, int);
 
 void selection_sort(vector<int>&);
 
+void selection_sort_iter(vector<int>& vec);
+
 int search(vector<int>&, int, int);
 
 int get_shift(vector<int>&);
