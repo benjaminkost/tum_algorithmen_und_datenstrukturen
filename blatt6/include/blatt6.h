@@ -17,6 +17,8 @@ void selection_sort(vector<int>&);
 
 void selection_sort_iter(vector<int>& vec);
 
+int binary_search(vector<int>& vec,int value);
+
 int search(vector<int>&, int, int);
 
 int get_shift(vector<int>&);

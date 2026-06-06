@@ -21,7 +21,7 @@ void aufgabe3() {
     printf("Before sort: ");
     printList(digits);
 
-    selection_sort_iter(digits);
+    selection_sort(digits);
 
     printf("After sort: ");
     printList(digits);
@@ -68,9 +68,10 @@ void printLinkedList(ListNode* &ptr)
 
 int main() {
 //    aufgabe2();
-     aufgabe3();
-//    aufgabe4a();
-//    aufgabe4b();
+//     aufgabe3();
+//      aufgabe4a();
+    aufgabe4b();
+
 
     /*auto head = new ListNode();
     head->val = 1;
