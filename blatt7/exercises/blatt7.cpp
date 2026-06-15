@@ -2,29 +2,67 @@
 
 
 /// Aufgabe 2
+void deleteNode(Node* &node)
+{
+    Node *helper = node;
+    node = node->next;
 
-// Return: Die Reihenfolge der entfernten Elemente, und das Label des Überlebenden
+    delete helper;
+}
+
+void printLinkedList(Node *head)
+{
+    Node *pointer = head;
+    printf("\n Current List: \n");
+    while (pointer->next->data != head->data)
+    {
+        printf("%i \n", pointer->data);
+        pointer = pointer->next;
+    }
+}
+
 std::pair<vector<int>, int> josephus(int n, int k) {
     vector<int> order;
-    // TODO
-    return {order, 1};
+    CyclicLinkedList cl(n);
+    Node* &pointer = cl.start;
+    while (pointer->next != pointer)
+    {
+        for (int i = 1; i < k-1; i++)
+        {
+            pointer = pointer->next;
+        }
+        order.push_back(pointer->next->data);
+        deleteNode(pointer->next);
+        pointer = pointer->next;
+    }
+    return {order, pointer->data};
 }
 
 /// Aufgabe 3a)
 
 float Polynomial::evaluate(float x) {
     float res = 0;
-    // TODO
+    for (ListNode *pointer = this->head; pointer != nullptr; pointer = pointer->next)
+    {
+        res += std::pow(x, pointer->i)*pointer->ci;
+    }
     return res;
 }
 
 /// Aufgabe 3b)
 
 bool Polynomial::equalTo(Polynomial& other){
-    // TODO
-    return false;
+    ListNode* current_node = this->head;
+    for (ListNode *pointer = other.head; pointer != nullptr; pointer = pointer->next)
+    {
+        if (pointer->i != current_node->i || pointer->ci != current_node->ci)
+        {
+            return false;
+        }
+        current_node = current_node->next;
+    }
+    return true;
 }
-
 
 /**
  *  ========== Hilfsfunktionen ==========

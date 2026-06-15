@@ -130,7 +130,7 @@ int get_shift(vector<int>& vec, int l, int r)
 
     if (vec[l] > vec[mid])
     {
-        return get_shift(vec, l, mid);
+        return get_shift(vec, l-1, mid);
     }
     return get_shift(vec, mid+1, r);
 }
