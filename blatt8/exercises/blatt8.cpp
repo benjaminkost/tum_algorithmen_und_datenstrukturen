@@ -67,92 +67,46 @@ void Polynomial::moveUp(float c) {
 }
 
 /// Aufgabe 4c)
-void insert(int index, int i, float ci, ListNode* &ptr)
-{
-    if (index == 0)
-    {
-        ListNode* newElement = new ListNode(i,ci);
-        newElement->next = ptr;
+void add_rec(ListNode* &current, ListNode* other) {
+    // Basisfall: Eins der beiden Polynome ist zu Ende
+    if(other == nullptr)
+        return;
 
-        ptr = newElement;
-    } else
-    {
-        if (ptr == nullptr) return;
-
-        insert(index - 1, i, ci, ptr->next);
-    }
-}
-
-void deleteSingleElement(ListNode* &position)
-{
-    ListNode* helper = position;
-    position = position->next;
-    delete helper;
-}
-
-ListNode* handleBeginningOfList(ListNode* &actual, ListNode* &other)
-{
-    ListNode* firstAddedElement = actual;
-    int firstExponent = actual->i;
-    for (int i = 0; other != nullptr && other->i > firstExponent; i++)
-    {
-        insert(i, other->i, other->ci, actual);
-        if (i == 0) firstAddedElement = actual;
-        other = other->next;
+    if(current == nullptr) {
+        // Unser Polynom ist zu Ende
+        current = new ListNode(other->i, other->ci);
+        add_rec(current->next, other->next);
+        // Wichtig: andere Liste muss KOPIERT werden:
+        // "current = other;" wäre fatal, da es beide Listen zusammenführen würde!
+        return;
     }
 
-    return firstAddedElement;
-}
-
-void handleEqualExponent(ListNode* &position, int coeff)
-{
-    if (coeff == 0) deleteSingleElement(position);
-
-    position->ci = position->ci;
-
-}
-
-void handleBiggerExponent(ListNode* &actual, ListNode* &other)
-{
-    auto* helper = other;
-    while (other->i > actual->next->i)
-    {
-        other = other->next;
+    // Rekursionsfall: Es gibt 3 Möglichkeiten, basierend darauf welcher Exponent der größte ist:
+    if(current->i > other->i) {
+        // Unser Exponent is höher -> wir gehen einen Schritt weiter
+        add_rec(current->next, other);
+    } else if (current->i < other->i) {
+        // Der andere Exponent is höher -> wir kopieren das Element in unsere Liste
+        ListNode* node = new ListNode(other->i, other->ci);
+        node->next = current;
+        current = node;
+        add_rec(node->next, other->next);
+    } else {
+        // Jetzt gilt: current->i == other->i
+        // -> Wir addieren die Koeffizienten
+        current->ci += other->ci;
+        if(current->ci == 0) {
+            // Die Summe der Koeffizienten ist 0 -> Wir löschen den Knoten
+            ListNode* tmp = current; // Pointer auf current, um diesen Knoten löschen zu können
+            current = current->next;
+            delete tmp;
+            add_rec(current, other->next);
+        } else {
+            add_rec(current->next, other->next);
+        }
     }
-    other = actual->next;
-    actual->next = helper;
 }
 
 void Polynomial::add(Polynomial& other){
-    auto* pointerCurrent = this->head;
-    auto* pointerOther = other.head;
-
-    this->head = handleBeginningOfList(pointerCurrent, pointerOther);
-
-    while (pointerCurrent != nullptr && pointerOther != nullptr)
-    {
-        if (pointerOther->i == pointerCurrent->next->i)
-        {
-            int coeff = pointerOther->ci+pointerCurrent->next->ci;
-            if (coeff == 0)
-            {
-                deleteSingleElement(pointerCurrent->next);
-            } else
-            {
-                pointerCurrent->next->ci = coeff;
-            }
-        } else if (pointerOther->i > pointerCurrent->next->i)
-        {
-            handleBiggerExponent(pointerCurrent, pointerOther);
-        } else if (pointerCurrent->next == nullptr)
-        {
-            pointerCurrent->next = pointerOther;
-        } else if (pointerOther->next == nullptr)
-        {
-            break;
-        }
-
-        pointerCurrent = pointerCurrent->next;
-        pointerOther = pointerOther->next;
-    }
+    add_rec(head, other.head);
 }
